@@ -1,74 +1,63 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# GitHub Anomaly Detector
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+GitHub Anomaly Detector is a command-line application built with NestJS that integrates with GitHub using webhooks to detect and notify suspicious behavior in an organization. It provides a simple mechanism to perform anomaly detection based on predefined criteria.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Receives webhook events from GitHub organization
+- Detects and notifies suspicious behavior
+- Implements anomaly detection based on predefined criteria
+- Prints event details to the console
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. Clone the repository:
 
-## Running the app
+   ```bash
+   git clone https://github.com/g4lb/github-anomaly-detector
+   ```
 
-```bash
-# development
-$ npm run start
+2. Install dependencies:
 
-# watch mode
-$ npm run start:dev
+   ```bash
+   cd github-anomaly-detector
+   npm install
+   ```
 
-# production mode
-$ npm run start:prod
-```
+## Configuration
 
-## Test
+1. Set up a GitHub webhook:
+   - Go to the settings of your GitHub organization (e.g., "g4lbe").
+   - Navigate to the repository or organization settings.
+   - Create a new webhook.
+   - Set the Payload URL to the URL where your NestJS application is running, followed by the route defined in the controller (`/webhooks/github`). If you are running the application locally, you can use ngrok to expose your local server to the internet.
+   - Choose the appropriate Content type (e.g., `application/json`).
+   - Select the events you want to monitor (e.g., push, create, delete).
+   - Optionally, set up a secret for securing the communication between your application and GitHub.
+   - Save the webhook configuration.
 
-```bash
-# unit tests
-$ npm run test
+> Note: If you are running the application locally, you can use ngrok to expose your local server to the internet. Start ngrok with the following command:
+>
+> ```bash
+> ngrok http 127.0.0.13000
+> ```
+>
+> Replace `3000` with the port number your NestJS application is running on. Then, use the ngrok-provided URL as the Payload URL for your webhook.
 
-# e2e tests
-$ npm run test:e2e
+## Usage
 
-# test coverage
-$ npm run test:cov
-```
+1. Start the NestJS application:
 
-## Support
+   ```bash
+   npm run start:dev
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+2. Ensure your application is running and accessible at the specified URL or the ngrok URL.
 
-## Stay in touch
+3. Trigger events in your GitHub organization ("g4lbe" in this case).
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+4. Check the console output of your application for suspicious behavior notifications.
 
-## License
+## Customization
 
-Nest is [MIT licensed](LICENSE).
-# github-anomaly-detector
+You can customize the anomaly detection criteria and notification mechanisms based on your specific requirements. The application's code is modularized, making it easy to add additional checks or integrate different notification services.
