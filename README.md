@@ -39,7 +39,7 @@ GitHub Anomaly Detector is a command-line application built with NestJS that int
 > Note: If you are running the application locally, you can use ngrok to expose your local server to the internet. Start ngrok with the following command:
 >
 > ```bash
-> ngrok http 127.0.0.13000
+> ngrok http 127.0.0.1:3000
 > ```
 >
 > Replace `3000` with the port number your NestJS application is running on. Then, use the ngrok-provided URL as the Payload URL for your webhook.
